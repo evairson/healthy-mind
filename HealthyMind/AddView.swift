@@ -93,6 +93,7 @@ struct AddView: View {
                 
                 HStack{
                     Spacer()
+                    Spacer()
                     VStack{
                         
                         Image("avatar1")
@@ -103,6 +104,29 @@ struct AddView: View {
                     }
                     .frame(height: 2*geo.size.height/5)
                     .foregroundColor(Color("font"))
+                    
+                    VStack{
+                        Button{
+                            
+                        } label:{
+                            Image(systemName: "person.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: geo.size.width/12)
+                                .foregroundColor(Color("font2"))
+                        }
+                        Button{
+                            
+                        } label:{
+                            Image(systemName: "square.and.pencil.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: geo.size.width/12)
+                                .foregroundColor(Color("font2"))
+                        }
+                    }
+                    
+                    
                     Spacer()
                     
                 }
