@@ -11,6 +11,8 @@ import CoreData
 struct AddView: View {
     
     @State private var isTaskOpen : [Int64 : Bool] = [:]
+    @State private var isModifyImage = false
+    @State private var isModifyText = false
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -64,7 +66,7 @@ struct AddView: View {
                                 .sheet(isPresented: Binding<Bool>(
                                     get: { isTaskOpen[task.id] ?? false },
                                     set: { isTaskOpen[task.id] = $0 }
-                                ),  onDismiss: didDismiss) {
+                                )) {
                                     TaskView(task: task, presented: Binding<Bool>(
                                         get: { isTaskOpen[task.id] ?? false },
                                         set: { isTaskOpen[task.id] = $0 }
@@ -107,7 +109,7 @@ struct AddView: View {
                     
                     VStack{
                         Button{
-                            
+                            isModifyImage = true
                         } label:{
                             Image(systemName: "person.circle.fill")
                                 .resizable()
@@ -115,8 +117,18 @@ struct AddView: View {
                                 .frame(maxWidth: geo.size.width/12)
                                 .foregroundColor(Color("font2"))
                         }
+                        .sheet(isPresented: Binding<Bool>(
+                            get: { isModifyImage },
+                            set: { isModifyImage = $0 }
+                        )) {
+                            ModifyImageView(isPresented: Binding<Bool>(
+                                get: { isModifyImage },
+                                set: { isModifyImage = $0 }
+                            ))
+                            }
+                        
                         Button{
-                            
+                            isModifyText = true
                         } label:{
                             Image(systemName: "square.and.pencil.circle.fill")
                                 .resizable()
@@ -124,6 +136,15 @@ struct AddView: View {
                                 .frame(maxWidth: geo.size.width/12)
                                 .foregroundColor(Color("font2"))
                         }
+                        .sheet(isPresented: Binding<Bool>(
+                            get: { isModifyText },
+                            set: { isModifyText = $0 }
+                        )) {
+                            ModifyNameView(isPresented: Binding<Bool>(
+                                get: { isModifyText },
+                                set: { isModifyText = $0 }
+                            ))
+                            }
                     }
                     
                     
@@ -144,13 +165,47 @@ struct AddView: View {
             
             }
     }
-    
-    func didDismiss() {
         
-    }
-    
+}
 
+struct ModifyImageView: View {
+    @Binding var isPresented: Bool
+    var body: some View {
+        Button{
+            isPresented = false
+        } label: {
+            Image(systemName: "xmark.circle")
+                .foregroundColor(Color("background"))
+        }
+    }
+}
+
+struct ModifyNameView: View {
+    @Binding var isPresented: Bool
+    var body: some View {
+        VStack{
+            HStack{
+                Button{
+                    isPresented = false
+                } label: {
+                    Image(systemName: "xmark.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(Color("font"))
+                        
+                        
+                }
+                .frame(maxWidth: 30)
+                Spacer()
+            }
+            .padding(20)
+            Spacer()
+            
+        }
         
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color("background"))
+    }
 }
 
 #Preview {
