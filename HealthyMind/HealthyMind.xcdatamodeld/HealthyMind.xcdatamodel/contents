@@ -12,6 +12,10 @@
     <entity name="CounterId" representedClassName=".CounterId" syncable="YES">
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="InfoUser" representedClassName="InfoUser" syncable="YES">
+        <attribute name="foreName" attributeType="String" defaultValueString="forename"/>
+        <attribute name="lastName" attributeType="String" defaultValueString="Last Name"/>
+    </entity>
     <entity name="ListIcon" representedClassName=".ListIcon" syncable="YES">
         <attribute name="icon" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
         <relationship name="taskContain" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskContain" inverseName="icons" inverseEntity="TaskContain"/>
