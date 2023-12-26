@@ -19,8 +19,11 @@ struct AddView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Task.id, ascending: true)],
         animation: .default)
     private var tasks: FetchedResults<Task>
-
-
+    
+    @FetchRequest(
+        sortDescriptors: [],
+        animation: .default)
+    private var info: FetchedResults<InfoUser>
 
     var body: some View {
 
@@ -101,7 +104,10 @@ struct AddView: View {
                         Image("avatar1")
                             .resizable()
                             .scaledToFit()
-                        Text("Prenom Nom")
+                        Text("\(info.first?.foreName ?? "Forname") \(info.first?.lastName ?? "Last Name")")
+                        
+                            .multilineTextAlignment(.leading)
+                            .fixedSize(horizontal: false, vertical: true)
                             .font(.custom("futura-bold", size: 25))
                     }
                     .frame(height: 2*geo.size.height/5)
@@ -181,7 +187,18 @@ struct ModifyImageView: View {
 }
 
 struct ModifyNameView: View {
+    @State var newForName = ""
+    @State var newLastName = ""
     @Binding var isPresented: Bool
+    
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest(
+        sortDescriptors: [],
+        animation: .default)
+    private var info: FetchedResults<InfoUser>
+
     var body: some View {
         VStack{
             HStack{
@@ -201,10 +218,75 @@ struct ModifyNameView: View {
             .padding(20)
             Spacer()
             
+            
+            Text("\(info.first?.foreName ?? "Forname") \(info.first?.lastName ?? "Last Name")")
+                .font(.custom("futura-bold", size: 25))
+                .multilineTextAlignment(.leading)
+                .fixedSize(horizontal: false, vertical: true)
+                .foregroundColor(Color("font"))
+            
+            Spacer()
+            
+            Text("New Name : ")
+                .font(.custom("futura-bold", size: 25))
+                .foregroundColor(Color("font"))
+            
+            TextField("Forname", text: Binding(
+                get: { newForName },
+                set: { newText in
+                    newForName = newText }))
+            
+                .padding()
+                .font(.custom("futura-bold", size: 20))
+                .background(Color("background2"))
+                .foregroundColor(Color("font"))
+                .cornerRadius(10)
+                .padding()
+            
+            TextField("Last Name", text: Binding(
+                get: { newLastName },
+                set: { newText in
+                    newLastName = newText }))
+                .padding()
+                .font(.custom("futura-bold", size: 20))
+                .background(Color("background2"))
+                .foregroundColor(Color("font"))
+                .disableAutocorrection(true)
+                .cornerRadius(10)
+                .padding()
+            
+            Button {
+                changeName()
+            } label: {
+                Text("CHANGE")
+                    .padding()
+                    .font(.custom("futura-bold", size: 20))
+                    .background(Color("font2"))
+                    .foregroundColor(Color("background"))
+                    .disableAutocorrection(true)
+                    .cornerRadius(10)
+                    .padding()
+            }
+            
+            Spacer()
+            
         }
         
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("background"))
+    }
+    
+    func changeName(){
+        info.first?.foreName = newForName
+        info.first?.lastName = newLastName
+        do{
+            
+            try viewContext.save()
+        }
+        catch {
+            fatalError("Error : \(error)")
+        }
+        isPresented = false
     }
 }
 

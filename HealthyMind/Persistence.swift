@@ -33,13 +33,19 @@ struct PersistenceController {
     func addBasicsTasks() {
         let context = self.container.viewContext
         let fetchRequest: NSFetchRequest<Task>=Task.fetchRequest()
+        let infoUser: NSFetchRequest<InfoUser>=InfoUser.fetchRequest()
         
         
         do {
             let count = try context.count(for: fetchRequest)
+            let count2 = try context.count(for: infoUser)
             if count == 0 {
                 createInitialTasks()
             }
+            if count2 == 0 {
+                createUser()
+            }
+            try context.save()
         } catch {
             fatalError("Error : \(error)")
         }
@@ -102,6 +108,13 @@ struct PersistenceController {
         
     }
 
+    func createUser(){
+        let context = self.container.viewContext
+        
+        var user = InfoUser(context: context)
+        
+    }
+    
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "HealthyMind")
         
