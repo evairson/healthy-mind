@@ -113,6 +113,11 @@ struct PersistenceController {
         
         var user = InfoUser(context: context)
         
+        user.avatarList = 12
+        user.avatar = 1
+        user.foreName = "First Name"
+        user.lastName = "Last Name"
+        
     }
     
     init(inMemory: Bool = false) {
