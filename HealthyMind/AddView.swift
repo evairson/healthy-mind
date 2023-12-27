@@ -101,7 +101,7 @@ struct AddView: View {
                     Spacer()
                     VStack{
                         
-                        Image("avatar1")
+                        Image("avatar\(info.first?.avatar ?? 1)")
                             .resizable()
                             .scaledToFit()
                         Text("\(info.first?.foreName ?? "Forname") \(info.first?.lastName ?? "Last Name")")
@@ -176,15 +176,70 @@ struct AddView: View {
 
 struct ModifyImageView: View {
     @Binding var isPresented: Bool
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest(
+        sortDescriptors: [],
+        animation: .default)
+    private var info: FetchedResults<InfoUser>
     var body: some View {
-        Button{
-            isPresented = false
-        } label: {
-            Image(systemName: "xmark.circle")
-                .foregroundColor(Color("background"))
+        HStack{
+            Button{
+                isPresented = false
+            } label: {
+                Image(systemName: "xmark.circle")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(Color("font"))
+                    
+                    
+            }
+            .frame(maxWidth: 30)
+            Spacer()
         }
+        
+        .padding(20)
+        Spacer()
+        
+        ScrollView {
+            Text("Choose your avatar :")
+                .font(.custom("futura-bold", size: 25))
+                .multilineTextAlignment(.leading)
+                .fixedSize(horizontal: false, vertical: true)
+                .foregroundColor(Color("font"))
+            
+            Spacer()
+            
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]) {
+                ForEach(Array(1...(info.first?.avatarList ?? 12)), id: \.self){ avatar in
+                    Button{
+                        changeAvatar(newAvatar: avatar)
+                        isPresented = false
+                    } label: {
+                        Image("avatar\(avatar)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                }
+            }
+            .padding()
+        }
+        
+    }
+    
+    func changeAvatar(newAvatar : Int64){
+        info.first?.avatar = newAvatar
+        do{
+            try viewContext.save()
+        }
+        catch {
+            fatalError("Error : \(error)")
+        }
+        isPresented = false
     }
 }
+
 
 struct ModifyNameView: View {
     @State var newForName = ""
@@ -219,7 +274,7 @@ struct ModifyNameView: View {
             Spacer()
             
             
-            Text("\(info.first?.foreName ?? "Forname") \(info.first?.lastName ?? "Last Name")")
+            Text("\(info.first?.foreName ?? "First Name") \(info.first?.lastName ?? "Last Name")")
                 .font(.custom("futura-bold", size: 25))
                 .multilineTextAlignment(.leading)
                 .fixedSize(horizontal: false, vertical: true)
@@ -231,7 +286,7 @@ struct ModifyNameView: View {
                 .font(.custom("futura-bold", size: 25))
                 .foregroundColor(Color("font"))
             
-            TextField("Forname", text: Binding(
+            TextField("First Name", text: Binding(
                 get: { newForName },
                 set: { newText in
                     newForName = newText }))
@@ -288,6 +343,8 @@ struct ModifyNameView: View {
         }
         isPresented = false
     }
+    
+
 }
 
 #Preview {

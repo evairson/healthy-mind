@@ -2,7 +2,7 @@
 //  InfoUser+CoreDataProperties.swift
 //  HealthyMind
 //
-//  Created by Eva Herson on 26/12/2023.
+//  Created by Eva Herson on 27/12/2023.
 //
 //
 
@@ -18,6 +18,8 @@ extension InfoUser {
 
     @NSManaged public var foreName: String?
     @NSManaged public var lastName: String?
+    @NSManaged public var avatar: Int64
+    @NSManaged public var avatarList: Int64
 
 }
 
