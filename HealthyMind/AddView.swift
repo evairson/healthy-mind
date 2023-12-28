@@ -184,47 +184,51 @@ struct ModifyImageView: View {
         animation: .default)
     private var info: FetchedResults<InfoUser>
     var body: some View {
-        HStack{
-            Button{
-                isPresented = false
-            } label: {
-                Image(systemName: "xmark.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(Color("font"))
-                    
-                    
+        VStack{
+            HStack{
+                Button{
+                    isPresented = false
+                } label: {
+                    Image(systemName: "xmark.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(Color("font"))
+                        
+                        
+                }
+                .frame(maxWidth: 30)
+                Spacer()
             }
-            .frame(maxWidth: 30)
-            Spacer()
-        }
-        
-        .padding(20)
-        Spacer()
-        
-        ScrollView {
-            Text("Choose your avatar :")
-                .font(.custom("futura-bold", size: 25))
-                .multilineTextAlignment(.leading)
-                .fixedSize(horizontal: false, vertical: true)
-                .foregroundColor(Color("font"))
             
+            .padding(20)
             Spacer()
             
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]) {
-                ForEach(Array(1...(info.first?.avatarList ?? 12)), id: \.self){ avatar in
-                    Button{
-                        changeAvatar(newAvatar: avatar)
-                        isPresented = false
-                    } label: {
-                        Image("avatar\(avatar)")
-                            .resizable()
-                            .scaledToFit()
+            ScrollView {
+                Text("Choose your avatar :")
+                    .font(.custom("futura-bold", size: 25))
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .foregroundColor(Color("font"))
+                
+                Spacer()
+                
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]) {
+                    ForEach(Array(1...(info.first?.avatarList ?? 12)), id: \.self){ avatar in
+                        Button{
+                            changeAvatar(newAvatar: avatar)
+                            isPresented = false
+                        } label: {
+                            Image("avatar\(avatar)")
+                                .resizable()
+                                .scaledToFit()
+                        }
                     }
                 }
+                .padding()
             }
-            .padding()
+       
         }
+        .background(Color("background"))
         
     }
     

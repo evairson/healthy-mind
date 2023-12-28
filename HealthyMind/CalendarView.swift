@@ -173,6 +173,7 @@ struct DayTaskContainView : View {
                         .resizable()
                         .scaledToFit()
                         .frame(maxHeight: width/10)
+
                     Spacer()
                 }
             }
@@ -242,18 +243,24 @@ struct DayView : View {
                     Spacer()
                 }
                 .padding(.init(top: 8, leading: 8, bottom: 0, trailing: 8))
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: 4), GridItem(.flexible())], spacing: 4) {
                     ForEach(Array(results.prefix(4)), id: \.self){ answer in
 
+                        HStack{
                             Image(answer.icon ?? "taskImage1")
                                 .resizable()
                                 .scaledToFit()
+                        }
+                        .padding(2)
+                        .background(Color(answer.color ?? "task1"))
+                        .cornerRadius(4)
+                                
                         
                         
                         
                     }
                 }
-                .padding([.leading, .trailing])
+                .padding([.leading, .trailing], 7)
 
                 Spacer()
             }

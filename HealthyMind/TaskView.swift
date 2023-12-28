@@ -117,6 +117,7 @@ struct TaskView: View {
                 
             }
             .padding()
+            .background(Color("background"))
             
         }
     }
