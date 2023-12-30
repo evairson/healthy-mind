@@ -14,13 +14,29 @@ struct AddNewTaskView: View {
     @State var colorForm = "task1"
     @State var iconForm = ""
     @State var contains : [TaskContain] = []
+    @State var errorText = false
+    
+    @Binding var isPresented : Bool
+    
+    @FetchRequest( sortDescriptors: [], animation: .default)
+    private var counter: FetchedResults<CounterId>
+    
+    
     private let colors : [String] = ["task1","task2","task3","task4","task5"]
     private let icons : [String] = ["taskImage1","taskImage2","taskImage3","taskImage4"]
     
     var body: some View {
         VStack{
-            
             HStack{
+                Button{
+                    isPresented = false
+                } label: {
+                    Image(systemName: "xmark.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(Color("font"))
+                        .frame(maxWidth: 15)
+                }
                 Spacer()
                 Text("ADD NEW FORM :")
                     .font(.custom("Ubuntu-Medium", size: 25))
@@ -111,7 +127,7 @@ struct AddNewTaskView: View {
                             Text(contain.isText ? "Text Form" : "Image Form")
                                 .padding(.top)
                                 .textCase(.uppercase)
-                                .font(.custom("ChalkboardSE-Light", size: 20))
+                                .font(.custom("ChalkboardSE-Light", size: 18))
                             HStack{
                                 TextField("Title", text: Binding(
                                     get: { contain.title ?? "" },
@@ -140,6 +156,31 @@ struct AddNewTaskView: View {
                     }
                     
                     Spacer()
+                    
+                    Button {
+                        if(verify()){
+                            saveNewTask()
+                            isPresented = false
+                        }
+                        else {
+                            errorText = true
+                        }
+                    } label:{
+                        Text("ADD NEW FORM")
+                            .font(.custom("ChalkboardSE-Light", size: 17))
+                            .foregroundColor(Color("font"))
+                            .padding(15)
+                            .background(Color("background"))
+                            .cornerRadius(10)
+                            .opacity(verify() ? 1 : 0.5)
+                            
+                    }
+                    
+                    if(errorText){
+                        Text("You need to add a title, an icon and at least one question form")
+                            .font(.custom("ChalkboardSE-Light", size: 15))
+                            .foregroundColor(Color("background"))
+                    }
                 }
                 
             }
@@ -178,6 +219,37 @@ struct AddNewTaskView: View {
         }
         catch {
             
+        }
+    }
+    
+    func verify() -> Bool {
+        if(title == "" || iconForm == ""){
+            return false
+        }
+        if(contains.isEmpty){
+            return false
+        }
+        return true
+        
+    }
+    
+    func saveNewTask(){
+        let newTask = Task(context: viewContext)
+        newTask.title = title
+        newTask.color = colorForm
+        newTask.icon = iconForm
+        newTask.id = counter.first!.id
+        counter.first!.id += 1
+        
+        for contain in contains {
+            newTask.addToContains(contain)
+        }
+        
+        do{
+            try viewContext.save()
+        }
+        catch {
+            fatalError("Error : \(error)")
         }
     }
 }
@@ -222,7 +294,3 @@ struct ListIconNewFormView: View  {
     }
 }
 
-
-#Preview {
-    AddNewTaskView()
-}
