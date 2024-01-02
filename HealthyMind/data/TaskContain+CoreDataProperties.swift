@@ -15,7 +15,7 @@ extension TaskContain {
     static let listIconOne = [1,2,3,4,5]
     
     public func copy(context : NSManagedObjectContext) -> TaskContain {
-        var contain = TaskContain(context: context)
+        let contain = TaskContain(context: context)
         contain.isText = self.isText
         contain.num = self.num
         contain.textAnswer = self.textAnswer
