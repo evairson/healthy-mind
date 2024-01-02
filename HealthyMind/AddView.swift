@@ -13,6 +13,7 @@ struct AddView: View {
     @State private var isTaskOpen : [Int64 : Bool] = [:]
     @State private var isModifyImage = false
     @State private var isModifyText = false
+    @State private var isAddNewForm = false
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -51,7 +52,7 @@ struct AddView: View {
                                     } label: {
                                         VStack{
                                             Text("\(task.title ?? "No Title")")
-                                                .font(.custom("HiraMaruProN-W4", size: 22))
+                                                .font(.custom("HiraMaruProN-W4", size: 18))
                                                 .foregroundColor(Color("background"))
                                             Image(task.icon ?? "taskImage1")
                                                 .resizable()
@@ -60,7 +61,7 @@ struct AddView: View {
                                         
                                     }
                                     
-                                    .padding()
+                                    .padding([.top,.leading,.trailing], 10)
                                     .frame(width: (2*geo.size.width/7), height: geo.size.height/5)
                                     .background(Color(task.color!))
                                     .cornerRadius(20)
@@ -80,7 +81,7 @@ struct AddView: View {
                             
                             }
                             Button{
-                                
+                                isAddNewForm = true
                             } label: {
                                 Image(systemName: "plus")
                                     .resizable()
@@ -88,6 +89,9 @@ struct AddView: View {
                                     .foregroundColor(Color("font2"))
                             }
                                 .frame(maxWidth: (geo.size.width/5), maxHeight: geo.size.height/5)
+                                .sheet(isPresented: $isAddNewForm) {
+                                    AddNewTaskView(isPresented: $isAddNewForm)
+                                }
                         }
                     }
                     .padding(2)
@@ -123,14 +127,8 @@ struct AddView: View {
                                 .frame(maxWidth: geo.size.width/12)
                                 .foregroundColor(Color("font2"))
                         }
-                        .sheet(isPresented: Binding<Bool>(
-                            get: { isModifyImage },
-                            set: { isModifyImage = $0 }
-                        )) {
-                            ModifyImageView(isPresented: Binding<Bool>(
-                                get: { isModifyImage },
-                                set: { isModifyImage = $0 }
-                            ))
+                        .sheet(isPresented: $isModifyImage) {
+                            ModifyImageView(isPresented: $isModifyImage)
                             }
                         
                         Button{
@@ -142,14 +140,8 @@ struct AddView: View {
                                 .frame(maxWidth: geo.size.width/12)
                                 .foregroundColor(Color("font2"))
                         }
-                        .sheet(isPresented: Binding<Bool>(
-                            get: { isModifyText },
-                            set: { isModifyText = $0 }
-                        )) {
-                            ModifyNameView(isPresented: Binding<Bool>(
-                                get: { isModifyText },
-                                set: { isModifyText = $0 }
-                            ))
+                        .sheet(isPresented: $isModifyText) {
+                            ModifyNameView(isPresented: $isModifyText)
                             }
                     }
                     
@@ -184,47 +176,51 @@ struct ModifyImageView: View {
         animation: .default)
     private var info: FetchedResults<InfoUser>
     var body: some View {
-        HStack{
-            Button{
-                isPresented = false
-            } label: {
-                Image(systemName: "xmark.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(Color("font"))
-                    
-                    
+        VStack{
+            HStack{
+                Button{
+                    isPresented = false
+                } label: {
+                    Image(systemName: "xmark.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(Color("font"))
+                        
+                        
+                }
+                .frame(maxWidth: 30)
+                Spacer()
             }
-            .frame(maxWidth: 30)
-            Spacer()
-        }
-        
-        .padding(20)
-        Spacer()
-        
-        ScrollView {
-            Text("Choose your avatar :")
-                .font(.custom("futura-bold", size: 25))
-                .multilineTextAlignment(.leading)
-                .fixedSize(horizontal: false, vertical: true)
-                .foregroundColor(Color("font"))
             
+            .padding(20)
             Spacer()
             
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]) {
-                ForEach(Array(1...(info.first?.avatarList ?? 12)), id: \.self){ avatar in
-                    Button{
-                        changeAvatar(newAvatar: avatar)
-                        isPresented = false
-                    } label: {
-                        Image("avatar\(avatar)")
-                            .resizable()
-                            .scaledToFit()
+            ScrollView {
+                Text("Choose your avatar :")
+                    .font(.custom("futura-bold", size: 25))
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .foregroundColor(Color("font"))
+                
+                Spacer()
+                
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]) {
+                    ForEach(Array(1...(info.first?.avatarList ?? 12)), id: \.self){ avatar in
+                        Button{
+                            changeAvatar(newAvatar: avatar)
+                            isPresented = false
+                        } label: {
+                            Image("avatar\(avatar)")
+                                .resizable()
+                                .scaledToFit()
+                        }
                     }
                 }
+                .padding()
             }
-            .padding()
+
         }
+        .background(Color("background"))
         
     }
     

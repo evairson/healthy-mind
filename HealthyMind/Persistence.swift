@@ -54,12 +54,6 @@ struct PersistenceController {
     func createInitialTasks(){
         let context = self.container.viewContext
         
-        let icons = ListIcon(context: context)
-        icons.icon = [Int]()
-        for i in 1...4{
-            icons.icon!.append(i)
-        }
-        
         let counterId = CounterId(context: context)
         counterId.id = 0
         
@@ -71,7 +65,7 @@ struct PersistenceController {
         contain1.title = "How are you feeling right now ?"
         contain1.num = 1
         contain1.isIcon = true
-        contain1.icons = icons
+        contain1.listIcons = TaskContain.listIconOne
         let contain2 = TaskContain(context: context)
         contain2.title = "Can you tell us more ?"
         contain2.isText = true
@@ -111,7 +105,7 @@ struct PersistenceController {
     func createUser(){
         let context = self.container.viewContext
         
-        var user = InfoUser(context: context)
+        let user = InfoUser(context: context)
         
         user.avatarList = 12
         user.avatar = 1

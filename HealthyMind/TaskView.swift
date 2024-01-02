@@ -20,6 +20,15 @@ struct TaskView: View {
             VStack{
                 
                 HStack{
+                    Button{
+                        isPresented = false
+                    } label: {
+                        Image(systemName: "xmark.circle")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(Color("font"))
+                            .frame(maxWidth: 15)
+                    }
                     Spacer()
                     Text("ADD ABOUT YOU")
                         .font(.custom("Ubuntu-Medium", size: 25))
@@ -29,15 +38,6 @@ struct TaskView: View {
                 VStack{
                     ScrollView {
                         HStack{
-                            VStack{
-                                Button {
-                                    isPresented = false
-                                } label: {
-                                    Image(systemName: "xmark.circle")
-                                        .foregroundColor(Color("background"))
-                                }
-                                Spacer()
-                            }
 
                             Spacer()
                             Text("\(task.title ?? "No title")")
@@ -117,6 +117,7 @@ struct TaskView: View {
                 
             }
             .padding()
+            .background(Color("background"))
             
         }
     }
@@ -202,7 +203,7 @@ struct ListIconView: View  {
     init(contain: TaskContain, width: Double){
         self.contain = contain
         self.width = width
-        icons = contain.icons!.icon!
+        icons = contain.listIcons ?? [1]
     }
     
     
@@ -211,13 +212,16 @@ struct ListIconView: View  {
     var body: some View {
         LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 20, maximum: width), spacing: 5, alignment: .center), count: 4)) {
             ForEach(icons, id: \.self) { icon in
-                    Button {
-                        contain.iconAnswer = "humeur\(icon)"
-                    } label: {
-                        Image(contain.iconAnswer == "humeur\(icon)" ? ("humeur\(icon)" + "N") : "humeur\(icon)")
-                            .resizable()
-                            .scaledToFit()
+                Image("humeur\(icon)")
+                    .resizable()
+                    .scaledToFit()
+                    .opacity("humeur\(icon)" == contain.iconAnswer ? 1 : 0.5)
+                    .scaleEffect("humeur\(icon)" == contain.iconAnswer ? 1.1 : 1)
+                    .animation(.easeIn, value: "humeur\(icon)" == contain.iconAnswer ? 1.1 : 1)
+                    .onTapGesture {
+                        contain.iconAnswer =  "humeur\(icon)"
                     }
+                    
                 }
         }
     }

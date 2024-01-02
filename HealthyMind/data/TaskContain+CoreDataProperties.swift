@@ -2,7 +2,7 @@
 //  TaskContain+CoreDataProperties.swift
 //  HealthyMind
 //
-//  Created by Eva Herson on 25/12/2023.
+//  Created by Eva Herson on 29/12/2023.
 //
 //
 
@@ -12,6 +12,8 @@ import CoreData
 
 extension TaskContain {
     
+    static let listIconOne = [1,2,3,4,5]
+    
     public func copy(context : NSManagedObjectContext) -> TaskContain {
         var contain = TaskContain(context: context)
         contain.isText = self.isText
@@ -20,7 +22,7 @@ extension TaskContain {
         contain.title = self.title
         contain.iconAnswer = self.iconAnswer
         contain.isIcon = self.isIcon
-        contain.icons = self.icons
+        contain.listIcons = self.listIcons
         return contain
     }
 
@@ -34,9 +36,9 @@ extension TaskContain {
     @NSManaged public var num: Int64
     @NSManaged public var textAnswer: String?
     @NSManaged public var title: String?
-    @NSManaged public var icons: ListIcon?
+    @NSManaged public var listIcons: [Int]?
+    @NSManaged public var answer: Answer?
     @NSManaged public var taskOk: Task?
-    @NSManaged public var answer: TaskContain?
 
 }
 

@@ -18,10 +18,6 @@
         <attribute name="foreName" attributeType="String" defaultValueString="forename"/>
         <attribute name="lastName" attributeType="String" defaultValueString="Last Name"/>
     </entity>
-    <entity name="ListIcon" representedClassName=".ListIcon" syncable="YES">
-        <attribute name="icon" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
-        <relationship name="taskContain" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskContain" inverseName="icons" inverseEntity="TaskContain"/>
-    </entity>
     <entity name="Task" representedClassName=".Task" syncable="YES">
         <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="icon" optional="YES" attributeType="String"/>
@@ -33,11 +29,11 @@
         <attribute name="iconAnswer" optional="YES" attributeType="String"/>
         <attribute name="isIcon" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isText" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="listIcons" optional="YES" attributeType="Transformable" valueTransformerName="[Int]"/>
         <attribute name="num" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="textAnswer" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="answer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Answer" inverseName="contains" inverseEntity="Answer"/>
-        <relationship name="icons" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListIcon" inverseName="taskContain" inverseEntity="ListIcon"/>
         <relationship name="taskOk" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="contains" inverseEntity="Task"/>
     </entity>
 </model>
