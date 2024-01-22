@@ -2,7 +2,7 @@
 //  Habit+CoreDataProperties.swift
 //  HealthyMind
 //
-//  Created by Eva Herson on 02/01/2024.
+//  Created by Eva Herson on 22/01/2024.
 //
 //
 
@@ -16,9 +16,11 @@ extension Habit {
         return NSFetchRequest<Habit>(entityName: "Habit")
     }
 
-    @NSManaged public var name: String?
+    @NSManaged public var id: Int64
     @NSManaged public var numberDay: Int64
     @NSManaged public var numberNow: Int64
+    @NSManaged public var title: String?
+    @NSManaged public var color: String?
 
 }
 
