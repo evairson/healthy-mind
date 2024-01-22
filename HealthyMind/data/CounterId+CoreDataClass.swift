@@ -2,7 +2,7 @@
 //  CounterId+CoreDataClass.swift
 //  HealthyMind
 //
-//  Created by Eva Herson on 25/12/2023.
+//  Created by Eva Herson on 02/01/2024.
 //
 //
 
@@ -13,5 +13,3 @@ import CoreData
 public class CounterId: NSManagedObject {
 
 }
-
-

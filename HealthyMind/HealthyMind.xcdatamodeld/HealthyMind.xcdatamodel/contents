@@ -11,11 +11,15 @@
     </entity>
     <entity name="CounterId" representedClassName=".CounterId" syncable="YES">
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="idHabits" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="taskDay" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="Habit" representedClassName="Habit" syncable="YES">
-        <attribute name="name" attributeType="String" defaultValueString="No name"/>
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="numberDay" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="numberNow" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String" defaultValueString="No name"/>
     </entity>
     <entity name="InfoUser" representedClassName="InfoUser" syncable="YES">
         <attribute name="avatar" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

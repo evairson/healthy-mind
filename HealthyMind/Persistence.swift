@@ -56,6 +56,7 @@ struct PersistenceController {
         
         let counterId = CounterId(context: context)
         counterId.id = 0
+        counterId.idHabits = 0
         
         let task1 = Task(context: context)
         task1.color = "task1"
@@ -99,6 +100,16 @@ struct PersistenceController {
         task2.addToContains(contain12)
         task2.addToContains(contain22)
         task2.addToContains(contain32)
+        
+        
+        let habit1 = Habit(context: context)
+        habit1.id = counterId.idHabits
+        counterId.idHabits += 1
+        habit1.title = "Drink Water"
+        habit1.numberDay = 5
+        habit1.numberNow = 5
+        
+        counterId.taskDay = Date()
         
     }
 

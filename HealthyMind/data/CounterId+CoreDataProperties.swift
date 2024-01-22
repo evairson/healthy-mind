@@ -2,7 +2,7 @@
 //  CounterId+CoreDataProperties.swift
 //  HealthyMind
 //
-//  Created by Eva Herson on 25/12/2023.
+//  Created by Eva Herson on 02/01/2024.
 //
 //
 
@@ -17,6 +17,8 @@ extension CounterId {
     }
 
     @NSManaged public var id: Int64
+    @NSManaged public var idHabits: Int64
+    @NSManaged public var taskDay: Date?
 
 }
 
