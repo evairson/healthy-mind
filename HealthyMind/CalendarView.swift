@@ -45,7 +45,6 @@ struct CalendarView: View {
                     LazyVGrid(columns: Array(repeating: GridItem(.fixed((geo.size.width-30)/7), spacing: 0, alignment: .center), count: 7), spacing: 0) {
                         ForEach(calendar.dayList) { day in
                             DayView(calendar: calendar, day: day, height: geo.size.height, width: geo.size.width)
-                            
                         }
                         
                         
@@ -102,41 +101,106 @@ struct DayTaskView : View {
     var body: some View {
         
         VStack {
-                ForEach(results){ answer in
-                    HStack{
-                        VStack{
-                            Text(answer.title ?? "no title")
-                                .textCase(.uppercase)
-                                .font(.custom("ChalkboardSE-Light", size: 15))
-                                .foregroundColor(Color("background"))
-                                .multilineTextAlignment(.leading)
-                                .fixedSize(horizontal: false, vertical: true)
-                            Image(answer.icon ?? "taskImage1")
-                                .resizable()
-                                .scaledToFit()
-                            Spacer()
-                        }
-                        .frame(maxWidth: width/6)
-                        
-                        VStack{
-                            DayTaskContainView(taskAnswer: answer, height: height, width: width)
-                        }
-                        .padding(.leading)
-                        
-                    }
-                    .padding()
-                
-                    .frame(maxWidth: .infinity)
-                    
-                    .background(Color(answer.color ?? "task1"))
-                    .cornerRadius(20)
-                    .padding([.leading, .top, .trailing])
+            ForEach(results){ answer in
+                contentDayTaskView(answer: answer, height: height, width: width)
+            }
+            }
+    }
+    
+}
+
+struct contentDayTaskView : View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @ObservedObject var answer : Answer
+    @State var height: Double
+    @State var width: Double
+    @State var pos = CGSize.zero
+    
+    var body: some View {
+        ZStack {
+            HStack {
+                Spacer()
+                VStack{
+                    Spacer()
+                    Image(systemName: "trash.fill")
+                        .foregroundColor(Color("background"))
+                    Text("DELETE")
+                        .foregroundColor(Color("background"))
+                    Spacer()
                     
                 }
+                
+                .padding()
+            }
+            .padding()
             
+            .frame(maxWidth: .infinity)
+            
+            .background(Color(answer.color ?? "task1").opacity(0.5))
+            .cornerRadius(20)
+            .padding([.leading, .top, .trailing])
+            
+            
+            HStack{
+                VStack{
+                    Text(answer.title ?? "no title")
+                        .textCase(.uppercase)
+                        .font(.custom("ChalkboardSE-Light", size: 15))
+                        .foregroundColor(Color("background"))
+                        .multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Image(answer.icon ?? "taskImage1")
+                        .resizable()
+                        .scaledToFit()
+                    Spacer()
+                }
+                .frame(maxWidth: width/6)
+                
+                VStack{
+                    DayTaskContainView(taskAnswer: answer, height: height, width: width)
+                }
+                .padding(.leading)
+                
+            }
+            .padding()
+            
+            .frame(maxWidth: .infinity)
+            
+            .background(Color(answer.color ?? "task1"))
+            .cornerRadius(20)
+            .padding([.leading, .top, .trailing])
+            .offset(x: pos.width)
+            .gesture(
+                DragGesture()
+                    .onChanged { gesture in
+                        if gesture.translation.width < 0 {
+                            pos = gesture.translation
+                        }
+                    }
+                    .onEnded { _ in
+                        if pos.width < -width/3 {
+                            deleteAnswer()
+                        }
+                        pos = .zero
+                    }
+            )
         }
     }
     
+    func deleteAnswer(){
+        withAnimation {
+            viewContext.delete(answer)
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
 }
 
 struct DayTaskContainView : View {
