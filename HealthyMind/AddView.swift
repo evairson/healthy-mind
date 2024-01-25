@@ -14,6 +14,7 @@ struct AddView: View {
     @State private var isModifyImage = false
     @State private var isModifyText = false
     @State private var isAddNewForm = false
+    @State var trashMode = false
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -33,10 +34,26 @@ struct AddView: View {
                 
                 HStack{
                     Spacer()
+                    Spacer()
                     Text("ADD ABOUT YOU")
                         .font(.custom("Ubuntu-Medium", size: 25))
                         .foregroundColor(Color("font"))
                     Spacer()
+                    Button{
+                        if(trashMode){
+                            trashMode = false
+                        }
+                        else {
+                            trashMode = true
+                        }
+                    } label:{
+                        Image(systemName: trashMode ? "checkmark.circle" : "trash")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: geo.size.width/18)
+                            .foregroundColor(Color("font"))
+                    }
+                    .padding(.trailing)
                 }
                 Spacer()
                 HStack{
@@ -47,24 +64,51 @@ struct AddView: View {
                             
                             ForEach(tasks) { task in
                                 
+                                ZStack{
                                     Button {
-                                        isTaskOpen[task.id] = true
-                                    } label: {
-                                        VStack{
-                                            Text("\(task.title ?? "No Title")")
-                                                .font(.custom("HiraMaruProN-W4", size: 18))
-                                                .foregroundColor(Color("background"))
-                                            Image(task.icon ?? "taskImage1")
-                                                .resizable()
-                                                .scaledToFit()
+                                        if(!trashMode){
+                                            isTaskOpen[task.id] = true
                                         }
+                                        else {
+                                            deleteTask(task: task)
+                                        }
+                                    } label: {
+                                        ZStack{
+                                            VStack{
+                                                Text("\(task.title ?? "No Title")")
+                                                    .font(.custom("HiraMaruProN-W4", size: 18))
+                                                    .foregroundColor(Color("background"))
+                                                Image(task.icon ?? "taskImage1")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .opacity(trashMode ? 0.5 : 1.0)
+                                            }
+                                            
+                                            if(trashMode){
+                                                 Image(systemName: "trash")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .foregroundColor(Color("background"))
+                                                    .padding()
+                                                
+                                            }
+                                                
+                                            
+                                        }
+                                        
+                                        
+                                        
                                         
                                     }
                                     
-                                    .padding([.top,.leading,.trailing], 10)
-                                    .frame(width: (2*geo.size.width/7), height: geo.size.height/5)
-                                    .background(Color(task.color!))
-                                    .cornerRadius(20)
+                                    
+                                    
+                                }
+                                    
+                                .padding([.top,.leading,.trailing], 10)
+                                .frame(width: (2*geo.size.width/7), height: geo.size.height/5)
+                                .background(Color(task.color!).opacity(trashMode ? 0.5 : 1.0))
+                                .cornerRadius(20)
                                     
                                 
                                 .sheet(isPresented: Binding<Bool>(
@@ -162,6 +206,21 @@ struct AddView: View {
                 }
             
             }
+    }
+    
+    func deleteTask(task : Task){
+        withAnimation {
+            viewContext.delete(task)
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
     }
         
 }

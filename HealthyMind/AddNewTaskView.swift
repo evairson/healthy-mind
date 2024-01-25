@@ -26,175 +26,191 @@ struct AddNewTaskView: View {
     private let icons : [String] = ["taskImage1","taskImage2","taskImage3","taskImage4"]
     
     var body: some View {
-        VStack{
-            HStack{
-                Button{
-                    isPresented = false
-                } label: {
-                    Image(systemName: "xmark.circle")
-                        .resizable()
-                        .scaledToFit()
+        GeometryReader{ geo in
+            VStack{
+                HStack{
+                    Button{
+                        isPresented = false
+                    } label: {
+                        Image(systemName: "xmark.circle")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(Color("font"))
+                            .frame(maxWidth: 15)
+                    }
+                    Spacer()
+                    Text("ADD NEW FORM :")
+                        .font(.custom("Ubuntu-Medium", size: 25))
                         .foregroundColor(Color("font"))
-                        .frame(maxWidth: 15)
+                    Spacer()
                 }
-                Spacer()
-                Text("ADD NEW FORM :")
-                    .font(.custom("Ubuntu-Medium", size: 25))
-                    .foregroundColor(Color("font"))
-                Spacer()
-            }
-            ScrollView{
-                VStack{
-                    TextField("Name of the form", text: $title)
-                        .font(.custom("ChalkboardSE-Light", size: 25))
-                        .foregroundColor(Color("background"))
-                    
-                    ScrollView(.horizontal) {
-                        HStack{
-                            Text("Select Color : ")
-                                .font(.custom("ChalkboardSE-Light", size: 20))
-                                .foregroundColor(Color("background"))
-                            Spacer()
-                        }
+                ScrollView{
+                    VStack{
+                        TextField("Name of the form", text: $title)
+                            .font(.custom("ChalkboardSE-Light", size: 25))
+                            .foregroundColor(Color("background"))
                         
-                        HStack {
-                            ForEach(colors, id: \.self) { color in
-                                Circle()
-                                    .foregroundColor(Color(color))
-                                    .frame(width:45, height: 45)
-                                    .onTapGesture {
-                                        colorForm = color
-                                    }
-                            }
-                        }
-                    }
-                    .padding()
-                    
-                    ScrollView(.horizontal) {
-                        HStack{
-                            Text("Select Icon : ")
-                                .font(.custom("ChalkboardSE-Light", size: 20))
-                                .foregroundColor(Color("background"))
-                            Spacer()
-                        }
-                        
-                        HStack {
-                            ForEach(icons, id: \.self) { icon in
-                                
-                                Image(icon)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width:45, height: 45)
-                                    .opacity(icon == iconForm ? 1 : 0.5)
-                                    .scaleEffect(icon == iconForm ? 1.1 : 1)
-                                    .animation(.easeIn, value: icon == iconForm ? 1.1 : 1)
-                                    .onTapGesture {
-                                        iconForm = icon
-                                    }
-                            }
-                        }
-                    }
-                    .padding()
-                    .padding(.bottom)
-                    
-                    HStack(spacing: 10){
-                        Button {
-                            addNewTaskContainText()
-                        } label:{
-                            Text("Add Text Form")
-                                .font(.custom("ChalkboardSE-Light", size: 17))
-                                .foregroundColor(Color("font"))
-                                .padding(15)
-                                .background(Color("background"))
-                                .cornerRadius(10)
-                        }
-                        
-                        Button {
-                            addNewTaskContainIcon()
-                        } label:{
-                            Text("Add Image Form")
-                                .font(.custom("ChalkboardSE-Light", size: 17))
-                                .foregroundColor(Color("font"))
-                                .padding(15)
-                                .background(Color("background"))
-                                .cornerRadius(10)
-                        }
-                    }
-                    .padding(.bottom)
-                    
-                    ForEach(contains, id: \.self) { contain in
-                        VStack{
-                            Text(contain.isText ? "Text Form" : "Image Form")
-                                .padding(.top)
-                                .textCase(.uppercase)
-                                .font(.custom("ChalkboardSE-Light", size: 18))
+                        ScrollView(.horizontal) {
                             HStack{
-                                TextField("Title", text: Binding(
-                                    get: { contain.title ?? "" },
-                                    set: { newText in
-                                        contain.title = newText }))
-                                .textCase(.uppercase)
-                                .font(.custom("ChalkboardSE-Light", size: 20))
-                                .padding(10)
-                                
-                                
-                                
+                                Text("Select Color : ")
+                                    .font(.custom("ChalkboardSE-Light", size: 20))
+                                    .foregroundColor(Color("background"))
                                 Spacer()
                             }
                             
-                            if contain.isIcon {
-                                ListIconNewFormView(contain: contain, width: 50)
-                                
+                            HStack {
+                                ForEach(colors, id: \.self) { color in
+                                    Circle()
+                                        .foregroundColor(Color(color))
+                                        .frame(width:45, height: 45)
+                                        .onTapGesture {
+                                            colorForm = color
+                                        }
+                                }
                             }
                         }
-                        .foregroundColor(Color("font"))
-                        .background(Color("background"))
-                        .cornerRadius(10)
+                        .padding()
+                        
+                        ScrollView(.horizontal) {
+                            HStack{
+                                Text("Select Icon : ")
+                                    .font(.custom("ChalkboardSE-Light", size: 20))
+                                    .foregroundColor(Color("background"))
+                                Spacer()
+                            }
+                            
+                            HStack {
+                                ForEach(icons, id: \.self) { icon in
+                                    
+                                    Image(icon)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width:45, height: 45)
+                                        .opacity(icon == iconForm ? 1 : 0.5)
+                                        .scaleEffect(icon == iconForm ? 1.1 : 1)
+                                        .animation(.easeIn, value: icon == iconForm ? 1.1 : 1)
+                                        .onTapGesture {
+                                            iconForm = icon
+                                        }
+                                }
+                            }
+                        }
+                        .padding()
                         .padding(.bottom)
                         
+                        HStack(spacing: 10){
+                            Button {
+                                addNewTaskContainText()
+                            } label:{
+                                Text("Add Text Form")
+                                    .font(.custom("ChalkboardSE-Light", size: 17))
+                                    .foregroundColor(Color("font"))
+                                    .padding(15)
+                                    .background(Color("background"))
+                                    .cornerRadius(10)
+                            }
+                            
+                            Button {
+                                addNewTaskContainIcon()
+                            } label:{
+                                Text("Add Image Form")
+                                    .font(.custom("ChalkboardSE-Light", size: 17))
+                                    .foregroundColor(Color("font"))
+                                    .padding(15)
+                                    .background(Color("background"))
+                                    .cornerRadius(10)
+                            }
+                        }
+                        .padding(.bottom)
                         
-                    }
-                    
-                    Spacer()
-                    
-                    Button {
-                        if(verify()){
-                            saveNewTask()
-                            isPresented = false
-                        }
-                        else {
-                            errorText = true
-                        }
-                    } label:{
-                        Text("ADD NEW FORM")
-                            .font(.custom("ChalkboardSE-Light", size: 17))
+                        ForEach(contains, id: \.self) { contain in
+                            VStack{
+                                HStack{
+                                    Spacer()
+                                    Text(contain.isText ? "Text Form" : "Image Form")
+                                        .textCase(.uppercase)
+                                        .font(.custom("ChalkboardSE-Light", size: 18))
+                                    Spacer()
+                                    Button {
+                                        if let index = contains.firstIndex(of: contain) {
+                                            contains.remove(at: index)
+                                        }
+                                    } label: {
+                                        Image(systemName: "xmark.circle")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(maxWidth: geo.size.width/20)
+                                            .foregroundColor(Color("font"))
+                                    }
+                                }
+                                .padding([.leading,.top,.trailing])
+                                
+                                HStack{
+                                    TextField("Title", text: Binding(
+                                        get: { contain.title ?? "" },
+                                        set: { newText in
+                                            contain.title = newText }))
+                                    .textCase(.uppercase)
+                                    .font(.custom("ChalkboardSE-Light", size: 20))
+                                    .padding(10)
+                                    
+                                    
+                                    
+                                    Spacer()
+                                    
+                                }
+                                
+                                if contain.isIcon {
+                                    ListIconNewFormView(contain: contain, width: 50)
+                                    
+                                }
+                            }
                             .foregroundColor(Color("font"))
-                            .padding(15)
                             .background(Color("background"))
                             .cornerRadius(10)
-                            .opacity(verify() ? 1 : 0.5)
+                            .padding(.bottom)
                             
+                            
+                        }
+                        
+                        Spacer()
+                        
+                        Button {
+                            if(verify()){
+                                saveNewTask()
+                                isPresented = false
+                            }
+                            else {
+                                errorText = true
+                            }
+                        } label:{
+                            Text("ADD NEW FORM")
+                                .font(.custom("ChalkboardSE-Light", size: 17))
+                                .foregroundColor(Color("font"))
+                                .padding(15)
+                                .background(Color("background"))
+                                .cornerRadius(10)
+                                .opacity(verify() ? 1 : 0.5)
+                            
+                        }
+                        
+                        if(errorText){
+                            Text("You need to add a title, an icon and at least one question form")
+                                .font(.custom("ChalkboardSE-Light", size: 15))
+                                .foregroundColor(Color("background"))
+                        }
                     }
                     
-                    if(errorText){
-                        Text("You need to add a title, an icon and at least one question form")
-                            .font(.custom("ChalkboardSE-Light", size: 15))
-                            .foregroundColor(Color("background"))
-                    }
                 }
+                .padding(25)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(colorForm))
+                .cornerRadius(20)
                 
             }
-            .padding(25)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(colorForm))
-            .cornerRadius(20)
-            
-            
-
-            
+            .padding()
+            .background(Color("background"))
         }
-        .padding()
-        .background(Color("background"))
     }
     
     func addNewTaskContainText(){
@@ -205,7 +221,8 @@ struct AddNewTaskView: View {
             try viewContext.save()
         }
         catch {
-            
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
     
@@ -218,7 +235,8 @@ struct AddNewTaskView: View {
             try viewContext.save()
         }
         catch {
-            
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
     
@@ -229,8 +247,23 @@ struct AddNewTaskView: View {
         if(contains.isEmpty){
             return false
         }
+        else {
+            return verifyContains()
+        }
+    }
+    
+    func verifyContains() -> Bool {
+        for contain in contains {
+            if(contain.isIcon){
+                if(contain.listIcons!.isEmpty){
+                    return false
+                }
+            }
+            if(contain.title == nil || contain.title!.isEmpty){
+                return false
+            }  
+        }
         return true
-        
     }
     
     func saveNewTask(){
@@ -263,11 +296,7 @@ struct ListIconNewFormView: View  {
         self.contain = contain
         self.width = width
         icons = TaskContain.listIconOne
-        contain.listIcons = []
     }
-    
-    
-    
     
     var body: some View {
         
