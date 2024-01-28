@@ -177,4 +177,11 @@ extension Date {
         let calendar = Calendar(identifier: .gregorian)
         return calendar.component(.year, from: self)
     }
+    
+    func isDate(date : Date) -> Bool {
+        if(self.getDay() == date.getDay() && self.getMonth() == date.getMonth() && self.getYear() == date.getYear()){
+            return true
+        }
+        return false
+    }
 }

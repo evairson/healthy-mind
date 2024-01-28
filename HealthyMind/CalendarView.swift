@@ -15,7 +15,7 @@ struct CalendarView: View {
         GeometryReader { geo in
                 VStack{
                     ScrollView {
-                    HStack{
+                    HStack {
                         Spacer()
                         Button{
                             calendar.change(newdate: Date.from(month: calendar.monthSelected == 1 ? 12 : calendar.monthSelected-1, day: 1, year: calendar.monthSelected == 1 ? calendar.yearSelected-1 : calendar.yearSelected))
@@ -25,11 +25,13 @@ struct CalendarView: View {
                         }
                         Spacer()
                         
-                        Text("\(calendar.MonthToString()) \(calendar.yearSelected)")
+                            Text("\(calendar.MonthToString()) \(calendar.yearSelected)")
+                            
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color("font"))
+
                         
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color("font"))
                         Spacer()
                         Button{
                             calendar.change(newdate: Date.from(month: calendar.monthSelected == 12 ? 1 : calendar.monthSelected+1, day: 1, year: calendar.monthSelected == 12 ? calendar.yearSelected+1 : calendar.yearSelected))
@@ -40,7 +42,23 @@ struct CalendarView: View {
                         Spacer()
                     }
                     .padding(.top)
-                    .padding(.bottom)
+                        
+                        if(!calendar.dateSelected.isDate(date: Date())){
+                            HStack {
+                                Button {
+                                    calendar.change(newdate: Date())
+                                } label: {
+                                    Text("Today")
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(Color("font2"))
+                                        .underline()
+                                        .cornerRadius(10)
+                                        .padding(.leading, 30)
+                                }
+                                Spacer()
+                            }
+                        }
+                        
                     
                     LazyVGrid(columns: Array(repeating: GridItem(.fixed((geo.size.width-30)/7), spacing: 0, alignment: .center), count: 7), spacing: 0) {
                         ForEach(calendar.dayList) { day in
@@ -56,15 +74,12 @@ struct CalendarView: View {
                     .background(Color(red: 0.973, green: 0.988, blue: 1))
                     .border(Color("background"),width: 1)
                     .cornerRadius(20)
-                    
-                    
-                    
-                    
-                    .padding(.leading, 15)
-                    .padding(.trailing, 15)
+                    .padding([.leading, .trailing], 15)
                     
                     
                     Spacer()
+                        
+                    
                     
                     DayTaskView(calendar: calendar, height: geo.size.height, width: geo.size.width)
                     
