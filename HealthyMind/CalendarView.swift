@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CalendarView: View {
     @ObservedObject var calendar = CalendarCreate(date: Date())
+    @State var calendarMode : Int
 
     var body: some View {
         GeometryReader { geo in
@@ -356,5 +357,5 @@ struct DayView : View {
 
 
 #Preview {
-    CalendarView()
+    CalendarView(calendarMode: 0)
 }

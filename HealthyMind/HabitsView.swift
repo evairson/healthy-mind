@@ -67,7 +67,8 @@ struct HabitsView: View {
                 
                 if(noHabit()){
                     Text("You already did all your habits today. Come back tomorrow or add new habits")
-                        .padding()
+                        .font(.custom("ChalkboardSE-Light", size: 18))
+                        .padding(20)
                 }
                 
                 ForEach(habits) { habit in
