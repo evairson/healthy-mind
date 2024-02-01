@@ -19,6 +19,8 @@
 		BE3651462B4465F300C9A960 /* HabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3651452B4465F300C9A960 /* HabitsView.swift */; };
 		BE3651552B446C0100C9A960 /* CounterId+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3651532B446C0100C9A960 /* CounterId+CoreDataClass.swift */; };
 		BE3651562B446C0100C9A960 /* CounterId+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3651542B446C0100C9A960 /* CounterId+CoreDataProperties.swift */; };
+		BE62209C2B6909D600006E60 /* BreathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62209B2B6909D600006E60 /* BreathView.swift */; };
+		BE62209E2B6A7C6C00006E60 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62209D2B6A7C6C00006E60 /* SettingsView.swift */; };
 		BE94F0422B31E3E900946AE6 /* HealthyMindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94F0412B31E3E900946AE6 /* HealthyMindApp.swift */; };
 		BE94F0442B31E3E900946AE6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94F0432B31E3E900946AE6 /* Persistence.swift */; };
 		BE94F0472B31E3E900946AE6 /* HealthyMind.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BE94F0452B31E3E900946AE6 /* HealthyMind.xcdatamodeld */; };
@@ -32,6 +34,8 @@
 		BE94F0632B31E42400946AE6 /* font in Resources */ = {isa = PBXBuildFile; fileRef = BE94F05B2B31E42400946AE6 /* font */; };
 		BE94F0642B31E42400946AE6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94F05C2B31E42400946AE6 /* ContentView.swift */; };
 		BEAD7E422B4C1955006513E4 /* AddNewHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAD7E412B4C1955006513E4 /* AddNewHabitView.swift */; };
+		BED575B22B66628100279DFA /* HabitHistory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED575B02B66628100279DFA /* HabitHistory+CoreDataClass.swift */; };
+		BED575B32B66628100279DFA /* HabitHistory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED575B12B66628100279DFA /* HabitHistory+CoreDataProperties.swift */; };
 		BEE0619C2B5E9A0F006DA11C /* Habit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0619A2B5E9A0F006DA11C /* Habit+CoreDataClass.swift */; };
 		BEE0619D2B5E9A0F006DA11C /* Habit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0619B2B5E9A0F006DA11C /* Habit+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +53,8 @@
 		BE3651452B4465F300C9A960 /* HabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsView.swift; sourceTree = "<group>"; };
 		BE3651532B446C0100C9A960 /* CounterId+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CounterId+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BE3651542B446C0100C9A960 /* CounterId+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CounterId+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BE62209B2B6909D600006E60 /* BreathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathView.swift; sourceTree = "<group>"; };
+		BE62209D2B6A7C6C00006E60 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BE94F03E2B31E3E800946AE6 /* HealthyMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthyMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE94F0412B31E3E900946AE6 /* HealthyMindApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthyMindApp.swift; sourceTree = "<group>"; };
 		BE94F0432B31E3E900946AE6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -65,6 +71,8 @@
 		BE94F05C2B31E42400946AE6 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = ../../MentalHealth/MentalHealth/ContentView.swift; sourceTree = "<group>"; };
 		BE94F0672B31E5F800946AE6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEAD7E412B4C1955006513E4 /* AddNewHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewHabitView.swift; sourceTree = "<group>"; };
+		BED575B02B66628100279DFA /* HabitHistory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitHistory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BED575B12B66628100279DFA /* HabitHistory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitHistory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BEE0619A2B5E9A0F006DA11C /* Habit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habit+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BEE0619B2B5E9A0F006DA11C /* Habit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habit+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,8 +109,10 @@
 			children = (
 				BEF914582B37084900E4164A /* data */,
 				BE94F0412B31E3E900946AE6 /* HealthyMindApp.swift */,
+				BE62209D2B6A7C6C00006E60 /* SettingsView.swift */,
 				BE94F0432B31E3E900946AE6 /* Persistence.swift */,
 				BE94F0572B31E42400946AE6 /* AddView.swift */,
+				BE62209B2B6909D600006E60 /* BreathView.swift */,
 				BE36513D2B3DF62900C9A960 /* AddNewTaskView.swift */,
 				BE94F05A2B31E42400946AE6 /* TaskView.swift */,
 				BEAD7E412B4C1955006513E4 /* AddNewHabitView.swift */,
@@ -132,6 +142,8 @@
 		BEF914582B37084900E4164A /* data */ = {
 			isa = PBXGroup;
 			children = (
+				BED575B02B66628100279DFA /* HabitHistory+CoreDataClass.swift */,
+				BED575B12B66628100279DFA /* HabitHistory+CoreDataProperties.swift */,
 				BE3651532B446C0100C9A960 /* CounterId+CoreDataClass.swift */,
 				BE3651542B446C0100C9A960 /* CounterId+CoreDataProperties.swift */,
 				BE2C1A192B3CACA8004C5FC4 /* InfoUser+CoreDataClass.swift */,
@@ -224,6 +236,7 @@
 				BE2C1A1C2B3CACA8004C5FC4 /* InfoUser+CoreDataProperties.swift in Sources */,
 				BE94F0602B31E42400946AE6 /* exemple.swift in Sources */,
 				BEE0619D2B5E9A0F006DA11C /* Habit+CoreDataProperties.swift in Sources */,
+				BED575B32B66628100279DFA /* HabitHistory+CoreDataProperties.swift in Sources */,
 				BE2C1A102B39A6CE004C5FC4 /* Answer+CoreDataProperties.swift in Sources */,
 				BE94F0642B31E42400946AE6 /* ContentView.swift in Sources */,
 				BEAD7E422B4C1955006513E4 /* AddNewHabitView.swift in Sources */,
@@ -231,12 +244,15 @@
 				BE94F05F2B31E42400946AE6 /* AddView.swift in Sources */,
 				BE2C1A1B2B3CACA8004C5FC4 /* InfoUser+CoreDataClass.swift in Sources */,
 				BE94F05D2B31E42400946AE6 /* CalendarView.swift in Sources */,
+				BE62209C2B6909D600006E60 /* BreathView.swift in Sources */,
 				BE3651422B3EDB1E00C9A960 /* TaskContain+CoreDataProperties.swift in Sources */,
 				BE3651462B4465F300C9A960 /* HabitsView.swift in Sources */,
+				BED575B22B66628100279DFA /* HabitHistory+CoreDataClass.swift in Sources */,
 				BE2C1A042B399A91004C5FC4 /* Task+CoreDataProperties.swift in Sources */,
 				BE94F0622B31E42400946AE6 /* TaskView.swift in Sources */,
 				BE94F0422B31E3E900946AE6 /* HealthyMindApp.swift in Sources */,
 				BE2C1A032B399A91004C5FC4 /* Task+CoreDataClass.swift in Sources */,
+				BE62209E2B6A7C6C00006E60 /* SettingsView.swift in Sources */,
 				BE3651552B446C0100C9A960 /* CounterId+CoreDataClass.swift in Sources */,
 				BE94F0472B31E3E900946AE6 /* HealthyMind.xcdatamodeld in Sources */,
 				BE94F0442B31E3E900946AE6 /* Persistence.swift in Sources */,

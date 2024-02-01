@@ -113,17 +113,18 @@ struct PersistenceController {
         
     }
 
-    func createUser(){
+    private func createUser(){
         let context = self.container.viewContext
         
         let user = InfoUser(context: context)
         
-        user.avatarList = 12
+        user.avatarList = 22
         user.avatar = 1
         user.foreName = "First Name"
         user.lastName = "Last Name"
         
     }
+    
     
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "HealthyMind")

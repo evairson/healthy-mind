@@ -73,28 +73,19 @@ struct HabitsView: View {
                 
                 ForEach(habits) { habit in
                     if(habit.numberNow > 0){
-                        habitView(habit: habit, width: geo.size.width, trashMode: $trashMode)
+                        habitView(habit: habit, width: geo.size.width, trashMode: $trashMode, opacity: 1.0)
                     }
-                    
+                }
+                ForEach(habits) { habit in
+                    if(habit.numberNow <= 0){
+                        habitView(habit: habit, width: geo.size.width, trashMode: $trashMode, opacity: 0.3)
+                    }
                 }
                 
                 
                 Spacer()
             }
             .background(Color("background"))
-            .onAppear {
-                if(counter.first != nil){
-                    if(counter.first!.taskDay!.getMonth() != Date().getMonth() || counter.first!.taskDay!.getYear() != Date().getYear() ||
-                       counter.first!.taskDay!.getDay() != Date().getDay()){
-                        for habit in habits {
-                            habit.numberNow = habit.numberDay
-                        }
-                        counter.first!.taskDay = Date()
-                        do {try viewContext.save()}
-                        catch {fatalError("Error : \(error)")}
-                    }
-                }
-            }
         }
     }
     
@@ -116,6 +107,7 @@ struct habitView : View {
     @ObservedObject var habit : Habit
     @State var width: Double
     @Binding var trashMode : Bool
+    @State var opacity: Double
     
     var body: some View {
             
@@ -161,7 +153,7 @@ struct habitView : View {
             }
             .padding()
             .frame(maxWidth: .infinity)
-            .background(Color(habit.color ?? "font2").opacity(trashMode ? 0.5 : 1.0))
+            .background(Color(habit.color ?? "font2").opacity(trashMode ? 0.5 : opacity))
             .cornerRadius(10)
             .padding([.leading, .trailing])
         

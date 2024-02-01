@@ -20,6 +20,14 @@
         <attribute name="numberDay" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="numberNow" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String" defaultValueString="No name"/>
+        <relationship name="habitHistory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HabitHistory" inverseName="habit" inverseEntity="HabitHistory"/>
+    </entity>
+    <entity name="HabitHistory" representedClassName="HabitHistory" syncable="YES">
+        <attribute name="day" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="month" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="numberDone" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="year" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="habit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Habit" inverseName="habitHistory" inverseEntity="Habit"/>
     </entity>
     <entity name="InfoUser" representedClassName="InfoUser" syncable="YES">
         <attribute name="avatar" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

@@ -9,9 +9,16 @@ import CoreData
 import SwiftUI
 
 struct CalendarView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var calendar = CalendarCreate(date: Date())
     @State var calendarMode : Int
+    @State var habitSelected : Habit?
 
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Habit.id, ascending: true)],
+        animation: .default)
+    private var habits: FetchedResults<Habit>
+    
     var body: some View {
         GeometryReader { geo in
                 VStack{
@@ -44,8 +51,8 @@ struct CalendarView: View {
                     }
                     .padding(.top)
                         
-                        if(!calendar.dateSelected.isDate(date: Date())){
-                            HStack {
+                        HStack {
+                            if(!calendar.dateSelected.isDate(date: Date())){
                                 Button {
                                     calendar.change(newdate: Date())
                                 } label: {
@@ -53,9 +60,39 @@ struct CalendarView: View {
                                         .fontWeight(.semibold)
                                         .foregroundColor(Color("font2"))
                                         .underline()
-                                        .cornerRadius(10)
                                         .padding(.leading, 30)
                                 }
+                            }
+                            Spacer()
+                            Menu {
+                                Button {
+                                    calendarMode = 0
+                                    habitSelected = nil
+                                } label: {
+                                    Label("Form", image: "taskImage1")
+                                }
+                                ForEach(habits) { habit in
+                                    Button {
+                                        calendarMode = 1
+                                        habitSelected = habit
+                                    } label: {
+                                        Text(habit.title!)
+                                            .background(Color(habit.color ?? "task1"))
+                                    }
+                                }
+                                        
+                            } label: {
+                                HStack{
+                                    Text((calendarMode == 0 || habitSelected?.title == nil) ? "Form" : "\(habitSelected!.title!)")
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(Color("font2"))
+                                    Image(systemName: "arrowtriangle.down.fill")
+                                        .foregroundColor(Color("font2"))
+                                }
+                            }
+                            
+                            Spacer()
+                            if(!calendar.dateSelected.isDate(date: Date())){
                                 Spacer()
                             }
                         }
@@ -63,7 +100,12 @@ struct CalendarView: View {
                     
                     LazyVGrid(columns: Array(repeating: GridItem(.fixed((geo.size.width-30)/7), spacing: 0, alignment: .center), count: 7), spacing: 0) {
                         ForEach(calendar.dayList) { day in
-                            DayView(calendar: calendar, day: day, height: geo.size.height, width: geo.size.width)
+                            if(calendarMode == 0 || habitSelected?.title == nil){
+                                DayView(calendar: calendar, day: day, height: geo.size.height, width: geo.size.width)
+                            }
+                            else {
+                                DayHabitView(calendar: calendar, day: day, habit: habitSelected!, height: geo.size.height, width: geo.size.width)
+                            }
                         }
                         
                         
@@ -81,8 +123,10 @@ struct CalendarView: View {
                     Spacer()
                         
                     
+                    if(calendarMode == 0 || habitSelected?.title == nil){
+                        DayTaskView(calendar: calendar, height: geo.size.height, width: geo.size.width)
+                    }
                     
-                    DayTaskView(calendar: calendar, height: geo.size.height, width: geo.size.width)
                     
                     
                 }
@@ -284,6 +328,73 @@ struct DayTaskContainView : View {
         
         }
     }
+}
+
+struct DayHabitView : View {
+    @ObservedObject var habit : Habit
+    @ObservedObject var calendar: CalendarCreate
+    @State var height: Double
+    @State var width: Double
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    @ObservedObject var day: Day
+    @FetchRequest var result: FetchedResults<HabitHistory>
+    
+
+
+    init(calendar : CalendarCreate, day : Day, habit : Habit, height: Double, width: Double) {
+        
+        self.habit = habit
+        self.day = day
+        self.calendar = calendar
+        self._height = State(initialValue: height)
+        self._width = State(initialValue: width)
+        
+        let predicate = NSPredicate(format: "month == %i AND year == %i AND day == %i AND habit == %@", day.date.getMonth(), day.date.getYear(), day.date.getDay(), habit)
+
+
+        self._result = FetchRequest(sortDescriptors: [], predicate: predicate)
+    }
+    
+    var body: some View{
+        Button {
+            calendar.change(newdate: Date.from(month: day.date.getMonth(), day: day.date.getDay(), year: day.date.getYear()))
+        } label: {
+            
+            ZStack{
+                VStack{
+                    Spacer()
+                    Rectangle()
+                        .fill(Color(habit.color ?? "task1"))
+                        .frame(height: calendar.dayList.count == 42 ? (Double(result.first?.numberDone ?? Int64(0.0) )*height)/(9*Double(habit.numberDay)) : (Double(result.first?.numberDone ?? Int64(0.0) )*2*height)/(15*Double(habit.numberDay)))
+                        .frame(maxWidth: .infinity)
+                }
+                
+                VStack(){
+                    HStack(){
+                        Text("\(day.date.getDay())")
+                            .font(.system(size: 12, weight: .regular, design: .rounded))
+                            .foregroundColor(day.notInMonth ? Color("font").opacity(0.5) : Color("font"))
+                        Spacer()
+                        }
+                        .padding(.init(top: 8, leading: 8, bottom: 0, trailing: 8))
+                        Spacer()
+                    }
+                    
+                
+            }
+        }
+        .frame(height: calendar.dayList.count == 42 ?  height/9 : 2*height/15)
+        .frame(width: (width-30)/7)
+        .border(Color("font"), width : day.isSelected ? 3 : 1)
+        
+    }
+    
+    func updateHabitHeight(){
+        
+
+    }
+        
 }
 
 struct DayView : View {
