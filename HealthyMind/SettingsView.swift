@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest( sortDescriptors: [], animation: .default)
+    private var infoUser: FetchedResults<InfoUser>
+    
     @State var isOn = false
     var body: some View {
         NavigationView {
@@ -31,6 +36,7 @@ struct SettingsView: View {
                 
                 Section {
                     Button {
+                        tuto()
                         
                     } label: {
                         Text("Restart Tutoriel")
@@ -79,10 +85,22 @@ struct SettingsView: View {
                 .listRowBackground(Color("background"))
             }
             .listStyle(.grouped)
+            .scrollContentBackground(.hidden)
             .background(Color("background"))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         
+    }
+    
+    private func tuto(){
+        infoUser.first!.tuto = true
+        do {
+            
+            try viewContext.save()
+        }
+        catch {
+        fatalError("Error : \(error)")
+        }
     }
 }
 

@@ -363,7 +363,9 @@ struct DayHabitView : View {
             
             ZStack{
                 VStack{
-                    Spacer()
+                    if(result.first?.numberDone != habit.numberDay){
+                        Spacer()
+                    }
                     Rectangle()
                         .fill(Color(habit.color ?? "task1"))
                         .frame(height: calendar.dayList.count == 42 ? (Double(result.first?.numberDone ?? Int64(0.0) )*height)/(9*Double(habit.numberDay)) : (Double(result.first?.numberDone ?? Int64(0.0) )*2*height)/(15*Double(habit.numberDay)))

@@ -11,8 +11,6 @@
 		BE2C1A042B399A91004C5FC4 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2C19FA2B399A91004C5FC4 /* Task+CoreDataProperties.swift */; };
 		BE2C1A0F2B39A6CE004C5FC4 /* Answer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2C1A0D2B39A6CE004C5FC4 /* Answer+CoreDataClass.swift */; };
 		BE2C1A102B39A6CE004C5FC4 /* Answer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2C1A0E2B39A6CE004C5FC4 /* Answer+CoreDataProperties.swift */; };
-		BE2C1A1B2B3CACA8004C5FC4 /* InfoUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2C1A192B3CACA8004C5FC4 /* InfoUser+CoreDataClass.swift */; };
-		BE2C1A1C2B3CACA8004C5FC4 /* InfoUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2C1A1A2B3CACA8004C5FC4 /* InfoUser+CoreDataProperties.swift */; };
 		BE36513E2B3DF62900C9A960 /* AddNewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36513D2B3DF62900C9A960 /* AddNewTaskView.swift */; };
 		BE3651412B3EDB1E00C9A960 /* TaskContain+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36513F2B3EDB1E00C9A960 /* TaskContain+CoreDataClass.swift */; };
 		BE3651422B3EDB1E00C9A960 /* TaskContain+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3651402B3EDB1E00C9A960 /* TaskContain+CoreDataProperties.swift */; };
@@ -35,6 +33,8 @@
 		BE94F0622B31E42400946AE6 /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94F05A2B31E42400946AE6 /* TaskView.swift */; };
 		BE94F0632B31E42400946AE6 /* font in Resources */ = {isa = PBXBuildFile; fileRef = BE94F05B2B31E42400946AE6 /* font */; };
 		BE94F0642B31E42400946AE6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94F05C2B31E42400946AE6 /* ContentView.swift */; };
+		BEA1C6B82B6F93C800E72D7C /* InfoUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C6B62B6F93C800E72D7C /* InfoUser+CoreDataClass.swift */; };
+		BEA1C6B92B6F93C800E72D7C /* InfoUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C6B72B6F93C800E72D7C /* InfoUser+CoreDataProperties.swift */; };
 		BEAD7E422B4C1955006513E4 /* AddNewHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAD7E412B4C1955006513E4 /* AddNewHabitView.swift */; };
 		BED575B22B66628100279DFA /* HabitHistory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED575B02B66628100279DFA /* HabitHistory+CoreDataClass.swift */; };
 		BED575B32B66628100279DFA /* HabitHistory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED575B12B66628100279DFA /* HabitHistory+CoreDataProperties.swift */; };
@@ -47,8 +47,6 @@
 		BE2C19FA2B399A91004C5FC4 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BE2C1A0D2B39A6CE004C5FC4 /* Answer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Answer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BE2C1A0E2B39A6CE004C5FC4 /* Answer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Answer+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BE2C1A192B3CACA8004C5FC4 /* InfoUser+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InfoUser+CoreDataClass.swift"; sourceTree = "<group>"; };
-		BE2C1A1A2B3CACA8004C5FC4 /* InfoUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InfoUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BE36513D2B3DF62900C9A960 /* AddNewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTaskView.swift; sourceTree = "<group>"; };
 		BE36513F2B3EDB1E00C9A960 /* TaskContain+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskContain+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BE3651402B3EDB1E00C9A960 /* TaskContain+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskContain+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -74,6 +72,8 @@
 		BE94F05B2B31E42400946AE6 /* font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = font; sourceTree = "<group>"; };
 		BE94F05C2B31E42400946AE6 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = ../../MentalHealth/MentalHealth/ContentView.swift; sourceTree = "<group>"; };
 		BE94F0672B31E5F800946AE6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEA1C6B62B6F93C800E72D7C /* InfoUser+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InfoUser+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BEA1C6B72B6F93C800E72D7C /* InfoUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InfoUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BEAD7E412B4C1955006513E4 /* AddNewHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewHabitView.swift; sourceTree = "<group>"; };
 		BED575B02B66628100279DFA /* HabitHistory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitHistory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BED575B12B66628100279DFA /* HabitHistory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitHistory+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -152,8 +152,8 @@
 				BED575B12B66628100279DFA /* HabitHistory+CoreDataProperties.swift */,
 				BE3651532B446C0100C9A960 /* CounterId+CoreDataClass.swift */,
 				BE3651542B446C0100C9A960 /* CounterId+CoreDataProperties.swift */,
-				BE2C1A192B3CACA8004C5FC4 /* InfoUser+CoreDataClass.swift */,
-				BE2C1A1A2B3CACA8004C5FC4 /* InfoUser+CoreDataProperties.swift */,
+				BEA1C6B62B6F93C800E72D7C /* InfoUser+CoreDataClass.swift */,
+				BEA1C6B72B6F93C800E72D7C /* InfoUser+CoreDataProperties.swift */,
 				BEE0619A2B5E9A0F006DA11C /* Habit+CoreDataClass.swift */,
 				BEE0619B2B5E9A0F006DA11C /* Habit+CoreDataProperties.swift */,
 				BE2C1A0D2B39A6CE004C5FC4 /* Answer+CoreDataClass.swift */,
@@ -240,16 +240,16 @@
 				BE3651562B446C0100C9A960 /* CounterId+CoreDataProperties.swift in Sources */,
 				BE6220A42B6BE13700006E60 /* ChatBubble.swift in Sources */,
 				BE36513E2B3DF62900C9A960 /* AddNewTaskView.swift in Sources */,
-				BE2C1A1C2B3CACA8004C5FC4 /* InfoUser+CoreDataProperties.swift in Sources */,
 				BE94F0602B31E42400946AE6 /* exemple.swift in Sources */,
 				BEE0619D2B5E9A0F006DA11C /* Habit+CoreDataProperties.swift in Sources */,
 				BED575B32B66628100279DFA /* HabitHistory+CoreDataProperties.swift in Sources */,
 				BE2C1A102B39A6CE004C5FC4 /* Answer+CoreDataProperties.swift in Sources */,
 				BE94F0642B31E42400946AE6 /* ContentView.swift in Sources */,
+				BEA1C6B82B6F93C800E72D7C /* InfoUser+CoreDataClass.swift in Sources */,
 				BEAD7E422B4C1955006513E4 /* AddNewHabitView.swift in Sources */,
 				BE2C1A0F2B39A6CE004C5FC4 /* Answer+CoreDataClass.swift in Sources */,
 				BE94F05F2B31E42400946AE6 /* AddView.swift in Sources */,
-				BE2C1A1B2B3CACA8004C5FC4 /* InfoUser+CoreDataClass.swift in Sources */,
+				BEA1C6B92B6F93C800E72D7C /* InfoUser+CoreDataProperties.swift in Sources */,
 				BE94F05D2B31E42400946AE6 /* CalendarView.swift in Sources */,
 				BE62209C2B6909D600006E60 /* BreathView.swift in Sources */,
 				BE3651422B3EDB1E00C9A960 /* TaskContain+CoreDataProperties.swift in Sources */,
@@ -412,7 +412,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
@@ -453,7 +453,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;

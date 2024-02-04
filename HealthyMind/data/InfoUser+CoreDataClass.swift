@@ -2,7 +2,7 @@
 //  InfoUser+CoreDataClass.swift
 //  HealthyMind
 //
-//  Created by Eva Herson on 27/12/2023.
+//  Created by Eva Herson on 04/02/2024.
 //
 //
 

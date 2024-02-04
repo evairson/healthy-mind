@@ -58,7 +58,25 @@ struct BreathView: View {
                         
                         Spacer()
                     }
-                    .padding(.bottom, geo.size.height/10)
+                    .padding(.bottom, start ? geo.size.height/10 : 0)
+                    
+                    if(!start){
+                        Button{
+                            start = true
+                            pos = -1/4
+                        } label: {
+                            Text("START")
+                                .font(.custom("ChalkboardSE-Light", size: 30))
+                                .foregroundColor(Color("background"))
+                                .padding(.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                                .background(Color("font2"))
+                                .cornerRadius(10)
+                                
+                        }
+                        .shadow(radius: 2)
+                        .padding(.bottom)
+                    }
+
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color("background"))
@@ -87,8 +105,7 @@ struct BreathView: View {
                             pos = -1/4
                         }
                        /* .onChange(of: start){
-                            start = true
-                            pos = -1/4
+                            
                         } */
                     Spacer()
                 }

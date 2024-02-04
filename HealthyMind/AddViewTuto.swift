@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct AddViewTuto: View {
+    @Environment(\.managedObjectContext) private var viewContext
     
     @Binding var step : Int
-    @Binding var tuto : Bool
     @State private var text = "Hi ! My name is Koly. Im here to help you understand this app."
     @State private var image = 1
     @State private var direction : ChatBubbleTestView.Direction = ChatBubbleTestView.Direction.left
+    
+    @FetchRequest( sortDescriptors: [], animation: .default)
+    private var infoUser: FetchedResults<InfoUser>
     
     
     var body: some View {
@@ -70,10 +73,22 @@ struct AddViewTuto: View {
                 case 7 : text = "You can get the history of every form you fill here"; image = 3; direction = ChatBubbleTestView.Direction.right
                 case 8 : text = "You can also change the calendar and see the history of your habits"; image = 5;
                 case 9 : text = "I let you explore the rest of the app ! Bye ^^"; image = 3
-                default : text = "Something went wrong"; tuto = false
+                default : text = "Something went wrong"; tutoEnd()
             }
             step += 1
             
+        }
+    }
+    
+    func tutoEnd(){
+        infoUser.first!.tuto = false
+        
+        do {
+            try viewContext.save()
+        }
+        catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
 

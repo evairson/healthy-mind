@@ -119,9 +119,10 @@ struct PersistenceController {
         let user = InfoUser(context: context)
         
         user.avatarList = 22
-        user.avatar = 1
+        user.avatar = 3
         user.foreName = "First Name"
         user.lastName = "Last Name"
+        user.tuto = true
         
     }
     

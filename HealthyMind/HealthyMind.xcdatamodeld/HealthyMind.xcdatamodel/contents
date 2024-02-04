@@ -34,6 +34,7 @@
         <attribute name="avatarList" optional="YES" attributeType="Integer 64" valueTransformerName="" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="foreName" attributeType="String" defaultValueString="forename"/>
         <attribute name="lastName" attributeType="String" defaultValueString="Last Name"/>
+        <attribute name="tuto" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="Task" representedClassName=".Task" syncable="YES">
         <attribute name="color" optional="YES" attributeType="String"/>
