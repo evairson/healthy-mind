@@ -79,7 +79,6 @@ struct SettingsView: View {
                 .listRowBackground(Color("background"))
             }
             .listStyle(.grouped)
-            .scrollContentBackground(.hidden)
             .background(Color("background"))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -86,10 +86,10 @@ struct BreathView: View {
                             start = true
                             pos = -1/4
                         }
-                        .onChange(of: start){
+                       /* .onChange(of: start){
                             start = true
                             pos = -1/4
-                        }
+                        } */
                     Spacer()
                 }
                 .padding(.bottom, geo.size.height/7)

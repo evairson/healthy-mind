@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct AddView: View {
+    @State var tuto = true
     
     @State private var isTaskOpen : [Int64 : Bool] = [:]
     @State private var isModifyImage = false

@@ -21,6 +21,8 @@
 		BE3651562B446C0100C9A960 /* CounterId+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3651542B446C0100C9A960 /* CounterId+CoreDataProperties.swift */; };
 		BE62209C2B6909D600006E60 /* BreathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62209B2B6909D600006E60 /* BreathView.swift */; };
 		BE62209E2B6A7C6C00006E60 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62209D2B6A7C6C00006E60 /* SettingsView.swift */; };
+		BE6220A02B6BD63F00006E60 /* AddViewTuto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62209F2B6BD63F00006E60 /* AddViewTuto.swift */; };
+		BE6220A42B6BE13700006E60 /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6220A32B6BE13700006E60 /* ChatBubble.swift */; };
 		BE94F0422B31E3E900946AE6 /* HealthyMindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94F0412B31E3E900946AE6 /* HealthyMindApp.swift */; };
 		BE94F0442B31E3E900946AE6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94F0432B31E3E900946AE6 /* Persistence.swift */; };
 		BE94F0472B31E3E900946AE6 /* HealthyMind.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BE94F0452B31E3E900946AE6 /* HealthyMind.xcdatamodeld */; };
@@ -55,6 +57,8 @@
 		BE3651542B446C0100C9A960 /* CounterId+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CounterId+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BE62209B2B6909D600006E60 /* BreathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathView.swift; sourceTree = "<group>"; };
 		BE62209D2B6A7C6C00006E60 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BE62209F2B6BD63F00006E60 /* AddViewTuto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewTuto.swift; sourceTree = "<group>"; };
+		BE6220A32B6BE13700006E60 /* ChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
 		BE94F03E2B31E3E800946AE6 /* HealthyMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthyMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE94F0412B31E3E900946AE6 /* HealthyMindApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthyMindApp.swift; sourceTree = "<group>"; };
 		BE94F0432B31E3E900946AE6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -111,7 +115,9 @@
 				BE94F0412B31E3E900946AE6 /* HealthyMindApp.swift */,
 				BE62209D2B6A7C6C00006E60 /* SettingsView.swift */,
 				BE94F0432B31E3E900946AE6 /* Persistence.swift */,
+				BE62209F2B6BD63F00006E60 /* AddViewTuto.swift */,
 				BE94F0572B31E42400946AE6 /* AddView.swift */,
+				BE6220A32B6BE13700006E60 /* ChatBubble.swift */,
 				BE62209B2B6909D600006E60 /* BreathView.swift */,
 				BE36513D2B3DF62900C9A960 /* AddNewTaskView.swift */,
 				BE94F05A2B31E42400946AE6 /* TaskView.swift */,
@@ -232,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE3651562B446C0100C9A960 /* CounterId+CoreDataProperties.swift in Sources */,
+				BE6220A42B6BE13700006E60 /* ChatBubble.swift in Sources */,
 				BE36513E2B3DF62900C9A960 /* AddNewTaskView.swift in Sources */,
 				BE2C1A1C2B3CACA8004C5FC4 /* InfoUser+CoreDataProperties.swift in Sources */,
 				BE94F0602B31E42400946AE6 /* exemple.swift in Sources */,
@@ -256,6 +263,7 @@
 				BE3651552B446C0100C9A960 /* CounterId+CoreDataClass.swift in Sources */,
 				BE94F0472B31E3E900946AE6 /* HealthyMind.xcdatamodeld in Sources */,
 				BE94F0442B31E3E900946AE6 /* Persistence.swift in Sources */,
+				BE6220A02B6BD63F00006E60 /* AddViewTuto.swift in Sources */,
 				BEE0619C2B5E9A0F006DA11C /* Habit+CoreDataClass.swift in Sources */,
 				BE3651412B3EDB1E00C9A960 /* TaskContain+CoreDataClass.swift in Sources */,
 				BE94F05E2B31E42400946AE6 /* CalendarCreate.swift in Sources */,
@@ -384,6 +392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = HealthyMind/HealthyMind.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -392,6 +401,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -402,18 +412,19 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Eva-Herson.HealthyMind";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -422,6 +433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = HealthyMind/HealthyMind.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -430,6 +442,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -440,18 +453,19 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Eva-Herson.HealthyMind";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
