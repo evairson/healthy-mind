@@ -319,6 +319,7 @@ struct ListIconNewFormView: View  {
                         
                     }
             }
+            .padding(.bottom)
 
     }
 }

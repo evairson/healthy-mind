@@ -65,12 +65,6 @@ struct HabitsView: View {
                 }
                 .padding()
                 
-                if(noHabit()){
-                    Text("You already did all your habits today. Come back tomorrow or add new habits")
-                        .font(.custom("ChalkboardSE-Light", size: 18))
-                        .padding(20)
-                }
-                
                 ForEach(habits) { habit in
                     if(habit.numberNow > 0){
                         habitView(habit: habit, width: geo.size.width, trashMode: $trashMode, opacity: 1.0)
@@ -117,7 +111,9 @@ struct habitView : View {
                     deleteHabit()
                 }
                 else {
-                    habit.numberNow -= 1
+                    if(habit.numberNow > 0){
+                        habit.numberNow -= 1
+                    }
                 }
                 do {
                     try viewContext.save()

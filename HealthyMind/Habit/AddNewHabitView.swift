@@ -100,7 +100,7 @@ struct AddNewHabitView: View {
                                         .foregroundColor(Color("background"))
                                 }
                             }
-                            .frame(maxHeight: geo.size.height/20)
+                            .frame(height: 60)
                             
                             
                             Spacer()

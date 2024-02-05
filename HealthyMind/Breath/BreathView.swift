@@ -54,7 +54,7 @@ struct BreathView: View {
                                     .foregroundColor(Color("font2"))
                             }
                         }
-                        .frame(maxHeight: geo.size.height/20)
+                        .frame(maxHeight: geo.size.height/15)
                         
                         Spacer()
                     }
