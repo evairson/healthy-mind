@@ -391,11 +391,6 @@ struct DayHabitView : View {
         .border(Color("font"), width : day.isSelected ? 3 : 1)
         
     }
-    
-    func updateHabitHeight(){
-        
-
-    }
         
 }
 
