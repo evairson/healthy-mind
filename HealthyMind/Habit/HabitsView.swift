@@ -64,20 +64,23 @@ struct HabitsView: View {
                     .padding(.trailing)
                 }
                 .padding()
-                
-                ForEach(habits) { habit in
-                    if(habit.numberNow > 0){
-                        habitView(habit: habit, width: geo.size.width, trashMode: $trashMode, opacity: 1.0)
+                ScrollView{
+                    
+                    ForEach(habits) { habit in
+                        if(habit.numberNow > 0){
+                            habitView(habit: habit, width: geo.size.width, trashMode: $trashMode, opacity: 1.0)
+                        }
                     }
-                }
-                ForEach(habits) { habit in
-                    if(habit.numberNow <= 0){
-                        habitView(habit: habit, width: geo.size.width, trashMode: $trashMode, opacity: 0.3)
+                    ForEach(habits) { habit in
+                        if(habit.numberNow <= 0){
+                            habitView(habit: habit, width: geo.size.width, trashMode: $trashMode, opacity: 0.3)
+                        }
                     }
+                    
+                    
+                    Spacer()
                 }
-                
-                
-                Spacer()
+
             }
             .background(Color("background"))
         }
