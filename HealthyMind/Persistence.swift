@@ -63,12 +63,12 @@ struct PersistenceController {
         task1.title = "Mood"
         task1.icon = "taskImage2"
         let contain1 = TaskContain(context: context)
-        contain1.title = "How are you feeling right now ?"
+        contain1.title = "How are you feeling right now?"
         contain1.num = 1
         contain1.isIcon = true
         contain1.listIcons = TaskContain.listIconOne
         let contain2 = TaskContain(context: context)
-        contain2.title = "Can you tell us more ?"
+        contain2.title = "Can you tell us more?"
         contain2.isText = true
         contain2.num = 2
         task1.id = counterId.id
@@ -80,18 +80,18 @@ struct PersistenceController {
         
         let task2 = Task(context: context)
         task2.color = "task2"
-        task2.title = "Thanks for"
+        task2.title = "Thankful for"
         task2.icon = "taskImage1"
         let contain12 = TaskContain(context: context)
-        contain12.title = "First thing you are thanks for :"
+        contain12.title = "First thing you are thankful for:"
         contain12.num = 1
         contain12.isText = true
         let contain22 = TaskContain(context: context)
-        contain22.title = "second thing you are thanks for :"
+        contain22.title = "Second thing you are thankful for:"
         contain22.isText = true
         contain22.num = 2
         let contain32 = TaskContain(context: context)
-        contain32.title = "third thing you are thanks for :"
+        contain32.title = "Third thing you are thankful for:"
         contain32.isText = true
         contain32.num = 3
         task2.id = counterId.id
