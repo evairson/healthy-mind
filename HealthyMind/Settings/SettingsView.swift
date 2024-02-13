@@ -61,7 +61,7 @@ struct SettingsView: View {
                     Button {
                         
                     } label: {
-                        Text("réinitialiser")
+                        Text("Reset")
                             .foregroundColor(Color("font2"))
                     }
                 }
@@ -87,6 +87,7 @@ struct SettingsView: View {
         fatalError("Error : \(error)")
         }
     }
+
 }
 
 #Preview {

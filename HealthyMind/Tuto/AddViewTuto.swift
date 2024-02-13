@@ -29,7 +29,7 @@ struct AddViewTuto: View {
                         Spacer()
                     }
                     ZStack{
-                        ChatBubbleTestView(width: 180, height: height, color: Color("font2"), direction: direction)
+                        ChatBubbleTestView(width: 200, height: height, color: Color("font2"), direction: direction)
                         Text(text)
                             .font(.custom("ChalkboardSE-Light", size: 18))
                             .foregroundColor(Color.white)

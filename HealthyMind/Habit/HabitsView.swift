@@ -19,7 +19,7 @@ struct HabitsView: View {
     @FetchRequest( sortDescriptors: [], animation: .default)
     var counter: FetchedResults<CounterId>
     
-    @State var isAddNewHabit = false;
+    @State var isAddNewHabit = false
     @State var trashMode = false
 
     
@@ -106,12 +106,14 @@ struct habitView : View {
     @Binding var trashMode : Bool
     @State var opacity: Double
     
+    @State var confirmationShow = false
+    
     var body: some View {
             
         
             Button {
                 if(trashMode){
-                    deleteHabit()
+                    confirmationShow = true
                 }
                 else {
                     if(habit.numberNow > 0){
@@ -155,6 +157,15 @@ struct habitView : View {
             .background(Color(habit.color ?? "font2").opacity(trashMode ? 0.5 : opacity))
             .cornerRadius(10)
             .padding([.leading, .trailing])
+        
+            .confirmationDialog("Are you sure you want to delete this habit?", isPresented: $confirmationShow, titleVisibility: .visible) {
+                    Button("Yes", role: .destructive) {
+                        withAnimation {
+                            deleteHabit()
+                            }
+                        }
+                    }
+
         
     }
     

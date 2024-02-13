@@ -108,8 +108,18 @@ struct PersistenceController {
         habit1.title = "Drink Water"
         habit1.numberDay = 5
         habit1.numberNow = 5
+        habit1.color = "task5"
         
         counterId.taskDay = Date()
+        
+        for i in 1...30{
+            let habitHistory = HabitHistory(context: context)
+            habitHistory.habit = habit1
+            habitHistory.numberDone = Int64(Int.random(in: 0..<6))
+            habitHistory.day = Int64(i)
+            habitHistory.year = 2024
+            habitHistory.month = 1
+        }
         
     }
 
@@ -125,7 +135,6 @@ struct PersistenceController {
         user.tuto = true
         
     }
-    
     
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "HealthyMind")

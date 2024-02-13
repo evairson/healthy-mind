@@ -16,6 +16,8 @@ struct AddView: View {
     @State private var isModifyText = false
     @State private var isAddNewForm = false
     @State var trashMode = false
+    @State private var showingDeleteAlert = false
+    @State private var selectedTaskForDeletion: Task? = nil
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -71,7 +73,8 @@ struct AddView: View {
                                             isTaskOpen[task.id] = true
                                         }
                                         else {
-                                            deleteTask(task: task)
+                                            selectedTaskForDeletion = task
+                                            showingDeleteAlert = true
                                         }
                                     } label: {
                                         ZStack{
@@ -98,8 +101,6 @@ struct AddView: View {
                                         }
                                         
                                         
-                                        
-                                        
                                     }
                                     
                                     
@@ -110,7 +111,15 @@ struct AddView: View {
                                 .frame(width: (2*geo.size.width/7), height: geo.size.height/5)
                                 .background(Color(task.color!).opacity(trashMode ? 0.5 : 1.0))
                                 .cornerRadius(20)
-                                    
+                                .confirmationDialog("Are you sure you want to delete this task?", isPresented: $showingDeleteAlert, titleVisibility: .visible){
+                                        Button("Yes", role: .destructive){
+                                        
+                                            withAnimation {
+                                                deleteTask(task: selectedTaskForDeletion!)
+                                                selectedTaskForDeletion = nil
+                                            }
+                                        }
+                                }
                                 
                                 .sheet(isPresented: Binding<Bool>(
                                     get: { isTaskOpen[task.id] ?? false },
