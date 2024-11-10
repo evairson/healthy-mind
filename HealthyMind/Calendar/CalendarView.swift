@@ -117,6 +117,7 @@ struct CalendarView: View {
                     .background(Color(red: 0.973, green: 0.988, blue: 1))
                     .border(Color("background"),width: 1)
                     .cornerRadius(20)
+                    .shadow(color: Color("background2"),radius: 5)
                     .padding([.leading, .trailing], 15)
                     
                     

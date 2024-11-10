@@ -108,7 +108,7 @@ struct PersistenceController {
         habit1.title = "Drink Water"
         habit1.numberDay = 5
         habit1.numberNow = 5
-        habit1.color = "task5"
+        habit1.color = "task1"
         
         counterId.taskDay = Date()
         
